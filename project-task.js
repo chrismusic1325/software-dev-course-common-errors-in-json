@@ -1,49 +1,14 @@
 /*
 ===========================================
-🏨 JSON Syntax Debugging: Hotel Booking Data
+Using JSON | Practice 2: Debugging JSON Travel Bookings
 ===========================================
 
-🎯 Objective:
-Students will analyze a JSON file containing multiple syntax errors,
-identify the issues, and correct them.
+Scenario:
+You are working as a developer on a team building a travel booking API.
+A teammate created a JSON file for a hotel booking, but it contains several syntax errors.
+The task is to identify the errors, correct them, and explain each fix.
 
-This activity helps practice spotting and fixing common JSON mistakes such as:
-- Missing commas
-- Incorrect use of quotation marks
-- Unmatched brackets/braces
-- Trailing commas
-- Invalid data types
-*/
-
-
-// ============================================
-// 🧭 Instructions:
-// ============================================
-
-/*
-📘 Scenario:
-You’re a developer on a team building a travel booking API.
-
-A teammate submitted a JSON file to represent a hotel booking, 
-but it contains multiple syntax errors that prevent it from being parsed.
-
-🔧 Your Task:
-1️⃣ Review the provided JSON file
-2️⃣ Identify all syntax errors
-3️⃣ Write down what each error is and why it causes a problem
-4️⃣ Correct the JSON structure so that it is valid
-5️⃣ Validate your corrected version using a JSON linter or validator
-
-🧪 Deliverables:
-- A corrected version of the JSON
-- A list of the corrections made and why each was necessary
-*/
-
-
-// ============================================
-// 🔍 Provided JSON File with Errors
-// ============================================
-
+Original Broken JSON:
 const invalidBookingJSON = `
 {
   "hotelName": "Grand City Hotel",
@@ -69,33 +34,66 @@ const invalidBookingJSON = `
 }
 `;
 
+Corrections Made:
+1. Added a comma after "checkInDate": "2024-05-15"
+   - JSON requires commas between key-value pairs.
 
-// ============================================
-// ✅ Requirements
-// ============================================
+2. Added quotation marks around name for Alice Johnson.
+   - JSON keys must always use double quotation marks.
 
-/*
-- Use a JSON validator or linter (e.g., https://jsonlint.com/) to test your final version
-- Keep track of each fix:
-  • What was wrong?
-  • Why is it a problem in JSON?
-  • What did you change to fix it?
+3. Changed "age": undefined to "age": null.
+   - JSON does not allow undefined. If the value is unknown, null is valid.
+
+4. Fixed Bob Smith's email from "bob.smith@example" to "bob.smith@example.com".
+   - This makes the email look complete and realistic.
+
+5. Removed the trailing comma after "Parking".
+   - JSON does not allow trailing commas at the end of arrays or objects.
+
+Follow-Up Questions:
+
+1. What tools or techniques did you use to identify the errors?
+I checked the JSON line by line and looked for common JSON errors such as missing commas, missing quotation marks, invalid values, and trailing commas.
+
+2. How did you confirm that your corrected JSON file was valid?
+I confirmed the corrected version by making sure all keys used double quotes, all values were valid JSON types, commas were placed correctly, and there were no trailing commas.
+
+3. Which errors were the most difficult to spot? Why?
+The missing comma after the check-in date was the most difficult to spot because the line itself looked correct, but JSON still needed a comma before the next property.
+
+4. What strategies can help you avoid these kinds of errors in the future?
+Using syntax highlighting, JSON validators, linters, careful indentation, and checking one object or array at a time can help avoid JSON syntax errors.
 */
 
+// Corrected valid JSON stored as a JavaScript string
 
-// ============================================
-// 🤔 Follow-Up Questions
-// ============================================
+const validBookingJSON = `
+{
+  "hotelName": "Grand City Hotel",
+  "checkInDate": "2024-05-15",
+  "checkOutDate": "2024-05-20",
+  "guests": [
+    {
+      "name": "Alice Johnson",
+      "age": 30,
+      "email": "alice.johnson@example.com"
+    },
+    {
+      "name": "Bob Smith",
+      "age": null,
+      "email": "bob.smith@example.com"
+    }
+  ],
+  "roomDetails": {
+    "type": "Suite",
+    "pricePerNight": 200,
+    "amenities": ["WiFi", "Breakfast", "Parking"]
+  }
+}
+`;
 
-/*
-💬 Reflect and answer the following:
+// Parse the JSON to confirm it works
+const bookingData = JSON.parse(validBookingJSON);
 
-1️⃣ What tools or techniques did you use to identify the errors?
-
-2️⃣ How did you confirm that your corrected JSON file was valid?
-
-3️⃣ Which errors were the most difficult to spot? Why?
-
-4️⃣ What strategies can help you avoid these kinds of errors in the future?
-   (e.g., syntax highlighting, linters, writing JSON by example)
-*/
+console.log("Corrected JSON is valid.");
+console.log(bookingData);
